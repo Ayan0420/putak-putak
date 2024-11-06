@@ -1,3 +1,3 @@
 export const environment = {
-    apiBase: 'http://192.168.0.100:3000'
+    apiBase: 'https://putak-putak-an1q.onrender.com'
 }
