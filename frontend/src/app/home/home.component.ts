@@ -5,11 +5,12 @@ import { Comment } from '../interfaces/comment.interface';
 import { NgFor } from '@angular/common';
 import { CommentFormComponent } from '../components/comment-form/comment-form.component';
 import { UserService } from '../services/user.service';
+import { CountdownComponent } from '../components/countdown/countdown.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommentComponent, NgFor, CommentFormComponent],
+  imports: [CommentComponent, NgFor, CommentFormComponent, CountdownComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

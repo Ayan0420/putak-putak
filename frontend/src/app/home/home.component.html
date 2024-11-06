@@ -1,5 +1,5 @@
 <section class="py-2">
-    <p class="text-center text-lg">I-share imo hunahuna ug gibati (putak). Di na kailangan mag-login ug ang mga putak mag-expire kada-adlaw.</p>
+    <p class="text-center text-lg">I-share imo hunahuna ug gibati (putak). Di na kinahanglan mag-login ug ang mga putak mag-expire kada-adlaw.</p>
 </section>
 
 <section id="top" class="flex flex-col gap-4">
@@ -8,7 +8,10 @@
 
 </section>
 <section class="flex flex-col gap-4">
-    <h2 class="text-3xl font-bold text-center pt-4">Mga Putak Karon Adlawa {{dateFormatted()}}</h2>
+    <div>
+        <h2 class="text-3xl font-bold text-center pt-4">Mga Putak Karon Adlawa {{dateFormatted()}}</h2>
+        <app-countdown></app-countdown>
+    </div>
     <!-- uses *ngFor directive -->
      <div *ngFor="let comment of comments()" class="border-b border-amber-800 pb-4 px-2">
          <app-comment [comment]="comment"></app-comment>
