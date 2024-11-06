@@ -1,0 +1,42 @@
+GET  http://localhost:3000/users
+
+###
+
+POST  http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "jerry clar 222"
+}
+
+### COMMENTS
+
+GET  http://localhost:3000/comments
+
+### 
+
+GET  http://localhost:3000/comments?parentId=672a517a91eb03665b1ee33c
+
+
+###
+
+POST  http://localhost:3000/comments
+Content-Type: application/json
+
+{
+    "text": "another one!!",
+    "userId": "67263cdc8f069f7d6405b3b8",
+    "parentId": "672252ae35f2622b7b623131"
+}
+
+###
+
+PATCH  http://localhost:3000/comments/672a517a91eb03665b1ee33c
+Content-Type: application/json
+
+{
+    "userId": "672a516e91eb03665b1ee338"
+}
+
+###
+GET  http://localhost:3000/comments/672a517a91eb03665b1ee33c/likes
