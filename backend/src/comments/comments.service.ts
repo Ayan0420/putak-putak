@@ -98,6 +98,10 @@ export class CommentsService {
       return comment.likers.length;
     }
 
+    async deleteAllComments() {
+      await this.commentModel.deleteMany({});
+    }
+
     // remove(id: number) {
     //     return `This action removes a #${id} comment`;
     // }
