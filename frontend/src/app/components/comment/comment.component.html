@@ -50,17 +50,21 @@
   }
 
   @if(isExpanded()){
-    <section class="my-4 flex flex-col gap-4" >
-      <!-- uses @for directive -->
-       @if(nestedComments().length > 0){
-         @for(comment of nestedComments(); track comment._id){
-           <app-comment [comment]="comment"></app-comment>
-         }
-       } 
-       @else {
-        <p class="text-center my-4 italic">Wala pay komento.</p>
-       }
-    </section>
+    @if(isLoading()){
+      <app-loader></app-loader>
+   } @else {
+     <section class="my-4 flex flex-col gap-4" >
+       <!-- uses @for directive -->
+        @if(nestedComments().length > 0){
+          @for(comment of nestedComments(); track comment._id){
+            <app-comment [comment]="comment"></app-comment>
+          }
+        } 
+        @else {
+         <p class="text-center my-4 italic">Wala pay komento.</p>
+        }
+     </section>
+   }
   }
 
 </article>

@@ -4,11 +4,12 @@ import { Comment } from '../../interfaces/comment.interface';
 import { CommentService } from '../../services/comment.service';
 import { NgFor } from '@angular/common';
 import { UserService } from '../../services/user.service';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-comment',
   standalone: true,
-  imports: [CommentFormComponent],
+  imports: [CommentFormComponent, LoaderComponent],
   templateUrl: './comment.component.html',
   styleUrl: './comment.component.scss'
 })
@@ -20,6 +21,7 @@ export class CommentComponent implements OnInit{
   userService = inject(UserService)
   nestedComments = signal<Comment[]>([])
   likes = signal<number>(0)
+  isLoading = signal(true)
 
   nestCommentEffect = effect(() => {
     if(this.isExpanded()) {
@@ -45,9 +47,11 @@ export class CommentComponent implements OnInit{
   }
 
   getComments() {
+    this.isLoading.set(true)
     this.commentService.getComments(this.comment._id)
     .subscribe(comments => {
         this.nestedComments.set(comments)
+        this.isLoading.set(false)
     })
   }
 
@@ -69,6 +73,7 @@ export class CommentComponent implements OnInit{
   }
 
   createComment(formValues: {text: string}) {
+    this.isLoading.set(true)
     const {text} = formValues
     const user = this.userService.getUserFromStorage()
     if(!user){
@@ -84,6 +89,7 @@ export class CommentComponent implements OnInit{
         createdComment,
         ... this.nestedComments()
       ])
+      this.isLoading.set(false)
     })
   }
 }

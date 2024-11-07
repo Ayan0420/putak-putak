@@ -6,11 +6,12 @@ import { NgFor } from '@angular/common';
 import { CommentFormComponent } from '../components/comment-form/comment-form.component';
 import { UserService } from '../services/user.service';
 import { CountdownComponent } from '../components/countdown/countdown.component';
+import { LoaderComponent } from '../components/loader/loader.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommentComponent, NgFor, CommentFormComponent, CountdownComponent],
+  imports: [CommentComponent, NgFor, CommentFormComponent, CountdownComponent, LoaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -23,20 +24,26 @@ export class HomeComponent implements OnInit {
   dateFormatted = signal(new Date(this.dateNow).toLocaleDateString())
 
   comments = signal<Comment[]>([])
+  
+  isLoading = signal(true)
 
   userService = inject(UserService)
+
 
   ngOnInit(): void {
       this.getComments()
   }
 
   getComments() {
+    this.isLoading.set(true)
     this.commentService.getComments().subscribe(comments => {
       this.comments.set(comments)
+      this.isLoading.set(false)
     })
   }
 
   createComment(formValues: {text: string}) {
+    this.isLoading.set(true)
     const {text} = formValues
     const user = this.userService.getUserFromStorage()
     if(!user){
@@ -51,6 +58,7 @@ export class HomeComponent implements OnInit {
         createdComment,
         ... this.comments()
       ])
+      this.isLoading.set(false)
     })
   }
 }

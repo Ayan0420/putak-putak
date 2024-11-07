@@ -13,10 +13,15 @@
         <app-countdown></app-countdown>
     </div>
     <!-- uses *ngFor directive -->
-     <div *ngFor="let comment of comments()" class="border-b border-amber-800 pb-4 px-2">
-         <app-comment [comment]="comment"></app-comment>
-        
-     </div>
+     @if(isLoading()){
+        <app-loader></app-loader>
+     } 
+     @else {
+         <div *ngFor="let comment of comments()" class="border-b border-amber-800 pb-4 px-2">
+             <app-comment [comment]="comment"></app-comment>
+            
+         </div>
+     }
 
 </section>
 
