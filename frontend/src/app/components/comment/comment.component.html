@@ -45,7 +45,14 @@
 
   @if(isReplying()){
     <section class="my-4" >
+      @if(isSending()){
+        <div class="my-4 flex flex-col gap-2 shadow-lg rounded px-2 py-4">
+            <h3 class="text-center text-2xl py-5 text-amber-800">Ginasend...</h3>
+        </div>
+      }
+      @else {
         <app-comment-form (formSubmitted)="createComment($event)" placeholder="Pagtubag ani nga putak" buttonText="Ipadala"></app-comment-form>  
+      }
     </section>
   }
 

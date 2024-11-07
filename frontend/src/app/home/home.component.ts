@@ -27,6 +27,8 @@ export class HomeComponent implements OnInit {
   
   isLoading = signal(true)
 
+  isSending = signal(false)
+
   userService = inject(UserService)
 
 
@@ -43,7 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   createComment(formValues: {text: string}) {
-    this.isLoading.set(true)
+    this.isSending.set(true)
     const {text} = formValues
     const user = this.userService.getUserFromStorage()
     if(!user){
@@ -58,7 +60,7 @@ export class HomeComponent implements OnInit {
         createdComment,
         ... this.comments()
       ])
-      this.isLoading.set(false)
+      this.isSending.set(false)
     })
   }
 }

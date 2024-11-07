@@ -22,6 +22,7 @@ export class CommentComponent implements OnInit{
   nestedComments = signal<Comment[]>([])
   likes = signal<number>(0)
   isLoading = signal(true)
+  isSending = signal(false)
 
   nestCommentEffect = effect(() => {
     if(this.isExpanded()) {
@@ -73,7 +74,7 @@ export class CommentComponent implements OnInit{
   }
 
   createComment(formValues: {text: string}) {
-    this.isLoading.set(true)
+    this.isSending.set(true)
     const {text} = formValues
     const user = this.userService.getUserFromStorage()
     if(!user){
@@ -89,7 +90,7 @@ export class CommentComponent implements OnInit{
         createdComment,
         ... this.nestedComments()
       ])
-      this.isLoading.set(false)
+      this.isSending.set(false)
     })
   }
 }
