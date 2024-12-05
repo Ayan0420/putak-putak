@@ -1,3 +1,3 @@
 export const environment = {
-    apiBase: 'https://putak-putak-an1q.onrender.com'
+    apiBase: 'https://putak-api.jcic.online/'
 }
