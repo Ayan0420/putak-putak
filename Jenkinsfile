@@ -13,7 +13,7 @@ pipeline {
                         sh 'docker build -t backend-app .'
                         sh 'docker stop backend || true'
                         sh 'docker rm backend || true'
-                        sh 'docker run -d --name backend -p 3000:3000 backend-app'
+                        sh 'docker run -d --name backend -p 4202:3000 backend-app'
                     }
                 }
             }
@@ -25,7 +25,7 @@ pipeline {
                         sh 'docker build -t frontend-app .'
                         sh 'docker stop frontend || true'
                         sh 'docker rm frontend || true'
-                        sh 'docker run -d --name frontend -p 4200:80 frontend-app'
+                        sh 'docker run -d --name frontend -p 4203:80 frontend-app'
                     }
                 }
             }
